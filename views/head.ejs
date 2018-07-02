@@ -1,0 +1,86 @@
+
+<head>
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/reset.css' />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+</head>
+<script>
+//html5 localStorage存储数据
+//设置数据
+function setStorage(_key, val){
+    localStorage[_key] = val;
+}
+
+//获取数据
+function getStorage(_key) {
+    return localStorage[_key];
+}
+//清除数据
+function clearStorage(_key) {
+    localStorage.removeItem(_key);
+}
+
+//html5 localStorage存储数据
+//设置数据
+function setSessionStorage(_key, val){
+    sessionStorage[_key] = val;
+}
+//获取数据
+function getSessionStorage(_key) {
+    return sessionStorage[_key];
+}
+//清除数据
+function clearSessionStorage(_key) {
+    sessionStorage.removeItem(_key);
+}
+
+// 读取cookie
+function getCookie(name){
+    var arr,reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+    if(arr = document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+//写入cookies
+function setCookie(name , value ,days){
+    days = days || 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + days*24*3600*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+
+// 删除cookie
+function delCookie(name){
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval != null){
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+    }
+}
+//获取url参数
+function GetRequest() {   
+   var url = location.search; //获取url中"?"符后的字串   
+   var theRequest = new Object();   
+   if (url.indexOf("?") != -1) {   
+      var str = url.substr(1);   
+      strs = str.split("&");   
+      for(var i = 0; i < strs.length; i ++) {   
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+      }   
+   }   
+   return theRequest;   
+}   
+// console.log('io_id',getCookie('io_id'))
+var _path = window.location.pathname;
+if(!getCookie('io_id')&&_path.indexOf('login')<0) {
+  
+  window.location.href = '/login'
+}
+</script>
+  

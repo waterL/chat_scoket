@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <% include head %>
+  <body class="bgcb">
+    <form action="" class="login">
+      <p class="radio">
+        <label class="mrr24">
+          <input type="radio" name="type" value="1" checked="">
+          <span class="dpib">客户</span>
+        </label>
+        <label>
+          <input type="radio" name="type" value="2">
+          <span class="dpib">商务</span>
+        </label>
+      </p>
+      <input id="m" autocomplete="off" placeholder="输入账号" />
+      <button>提交</button>
+    </form>
+  </body>
+</html>
+<script>
+  // $.post('/cont/abc',{name:'111',type:1}, function(data, textStatus, xhr) {
+  //   console.log(data)
+  // });
+$(function () {
+  var socket = io();
+  $('form').submit(function(){
+    var name = $('#m').val();
+    var type = $('input[type=radio]:checked').val()
+    var param = {
+      type:type,
+      name:name
+    }
+    console.log('param',param)
+    if($.trim(name) == '') {
+      alert('请输入账号');
+      return false;
+    }
+    $.post('/ajaxName', param, function(data, textStatus, xhr) {
+      if(data.ret == 1) {
+        /*optional stuff to do after success */
+        setCookie('io_id',data.id)
+        setCookie('io_type',type)
+        window.location.href = '/';
+      }
+    });
+    return false;
+  });
+});
+</script>

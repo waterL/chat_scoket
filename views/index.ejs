@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+   <% include head %>
+  <style>
+    .index_list{padding:20px;}
+    .index_li{padding:10px 20px;border:1px solid #ccc;margin-bottom: 12px;cursor:pointer;}
+    .index_li:hover{background-color: #eee;}
+
+  </style>
+  <body>
+    <div class="index_list">
+      
+      <% for(var i=0; i<list.length; i++){ %>
+        <div class="index_li" data-id="<%= list[i].id %>">
+          <p><%= list[i].name %></p>
+        </div>
+      <% } %>
+
+    </div>
+  </body>
+</html>
+<script>
+$(function () {
+  $('.index_li').click(function(event) {
+    var id = $(this).data('id');
+    window.location.href = '/form?id=' + id;
+  });
+});
+</script>

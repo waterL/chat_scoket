@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <% include head %>
+    <body>
+        <h1 class="tc"><%= name %></h1>
+        <ul id="messages">
+            <% 
+                for (var i = 0; i < list.length; i++) { 
+                    if(list[i].flag == type) {
+            %>
+
+                <li class="my"><%= list[i].cont %></li>
+            <% } else {%>
+                <li><%= list[i].cont %></li>
+            <% }} %>
+        </ul>
+        <form action="" class="form">
+            <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+    </body>
+</html>
+<script>
+$(function() {
+    var socket = io();
+    var url_query = <%- JSON.stringify(query) %>;
+    var aa = '<%= name%>';
+    // console.log(aa,'url_query',url_query.id)
+    var param = {};
+    if (getCookie('io_type') == 1) {
+        param.uid = getCookie('io_id');
+        param.sw_id = url_query.id;
+    } else {
+        param.uid = url_query.id;
+        param.sw_id = getCookie('io_id');
+    }
+    
+    param.ctime = (new Date()).valueOf();
+    param.flag = getCookie('io_type');
+    $('form').submit(function() {
+        socket.emit('my message', {
+            val:$('#m').val(),
+            type:getCookie('io_type')
+        });
+        param.cont = $('#m').val();
+        // console.log(param)
+        $.post('/form/chat', param, function(data, textStatus, xhr) {
+            /*optional stuff to do after success */
+        });
+        $('#m').val('');
+        return false;
+    });
+    socket.on('my message', function(msg) {
+        console.log('my')
+        if(msg.type == getCookie('io_type')) {
+            $('#messages').append($('<li class="my">').text(msg.val));
+        } else {
+            $('#messages').append($('<li>').text(msg.val));
+        }
+    });
+    socket.on('new message', function(msg) {
+        console.log('new')
+        $('#messages').append($('<li>').text(msg));
+    });
+});
+</script>
