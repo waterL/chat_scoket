@@ -4,8 +4,8 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'root',
-	database : 'test'
+	password : '123456',
+	database : 'chat'
 });
 
 function where_fun(where){
