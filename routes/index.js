@@ -44,6 +44,7 @@ router.get('/', function(req, res, next) {
 	// console.log('body',req.cookies)
 	var table = req.cookies.io_type == 1?'sw_user':'user'
 	base.all(table , {}	, rs => {
+		console.log('liebiao=',rs)
 		// res.json(rs)
 	    res.render('index', { 
 	  	    title: '列表', 
@@ -63,7 +64,7 @@ router.post('/ajaxName', function(req, res, next) {
 	// console.log('ajaxNameparm', parm)
 	if(parm.type == 1) {
 		base.find("user" ,{name:parm.name}, rs => {
-				
+
 			if(rs.length==0) {
 				base.add("user" ,{name:parm.name}, rss => {
 					// console.log('ajaxNamerss',rss)
