@@ -34,7 +34,7 @@ $(function() {
         param.sw_id = getCookie('io_id');
     }
     
-    param.ctime = (new Date()).valueOf();
+    param.ctime = parseInt((new Date()).valueOf()/1000);
     param.flag = getCookie('io_type');
     $('form').submit(function() {
         socket.emit('my message', {

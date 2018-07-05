@@ -15,13 +15,14 @@ router.get('/form', function(req, res, next) {
 		param.uid = req.query.id;
 		param.sw_id = req.cookies.io_id;
 	}
-	console.log('body',param)
+	console.log(table, 'body',param)
 	base.find(table ,{id:req.query.id}, rs => {
 		console.log(rs[0].name)
 		base.all('chat_list' , param, rss => {
+			console.log('chat_list',rss)
 			// res.json(rss)
 		    res.render('form', { 
-		  	    title: '聊天界面',
+		  	    title: '聊天界面1',
 		  	    name: rs[0].name, 
 		  	    query:req.query,
 		  	    type:req.cookies.io_type,
@@ -59,12 +60,13 @@ router.get('/login', function(req, res, next) {
 //登录账号请求
 router.post('/ajaxName', function(req, res, next) {
 	var parm = req.body;
-	
+	// console.log('ajaxNameparm', parm)
 	if(parm.type == 1) {
 		base.find("user" ,{name:parm.name}, rs => {
+				
 			if(rs.length==0) {
 				base.add("user" ,{name:parm.name}, rss => {
-					console.log('rss',rss)
+					// console.log('ajaxNamerss',rss)
 					res.json({ret:1,id:rss.insertId})
 				});
 			} else {
@@ -73,8 +75,10 @@ router.post('/ajaxName', function(req, res, next) {
 		});
 	} else if(parm.type == 2) {
 		base.find("sw_user" ,{name:parm.name}, rs => {
+			// console.log('ajaxNamers2',rs)
 			if(rs.length==0) {
 				base.add("sw_user" ,{name:parm.name}, rss => {
+					// console.log('ajaxNamerss2',rss)
 					res.json({ret:1,id:rss.insertId})
 				});
 			} else {
