@@ -2,8 +2,8 @@ var util = require('util');
 var prefix = '';
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
+	host     : '120.78.198.169',
+	user     : 'chat',
 	password : '123456',
 	database : 'chat'
 });
@@ -84,7 +84,8 @@ var db = {
     add (table , params , callback){
         // {username:'guojikai',age:'55',sex:'1'}
         res = params_fun(params);
-        var sql = "INSERT INTO "+ prefix + table + '('+res.fields+') VALUES('+res.values+')';
+        var sql = "INSERT INTO "+ prefix + table + ' ('+res.fields+') VALUES ('+res.values+')';
+        console.log('sql=', sql)
         connection.query(sql,function (err, result) {
             if(err){
                 callback(err.message)
