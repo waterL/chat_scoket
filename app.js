@@ -17,9 +17,11 @@ var processa = require('child_process');
 
 
 app.get('/git', function(req, res, next) {
+  console.log('git',req,'git',res,'git',next)
   processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
+    console.log('sh')
     if (error !== null) {
-      console.log('exec error: ' + error);
+      console.log('exec error: ' + error); 
     }
   });
 });
