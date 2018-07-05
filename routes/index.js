@@ -1,7 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var base = require('../database')
+var process = require('child_process');
 
+router.get('/git',function(){
+	process.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
+        if (error !== null) {
+          console.log('exec error: ' + error);
+        }
+	});
+})
 //聊天界面
 router.get('/form', function(req, res, next) {
 	var param = {}
