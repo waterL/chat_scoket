@@ -41,7 +41,7 @@ router.post('/form/chat', function(req, res, next) {
 /* GET home page. */
 // 首页列表
 router.get('/', function(req, res, next) {
-	// console.log('body',req.cookies)
+	console.log('/body',req.cookies)
 	var table = req.cookies.io_type == 1?'sw_user':'user'
 	base.all(table , {}	, rs => {
 		console.log('liebiao=',rs)
