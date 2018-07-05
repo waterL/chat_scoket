@@ -1,3 +1,3 @@
-cd /web
+cd /web/chat/chat_scoket
 git pull
 
