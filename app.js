@@ -12,12 +12,17 @@ var cont = require('./routes/cont');
 var app = express();
 
 var base = require('./database')
+var processa = require('child_process');
 
 
 
-// app.get('/', function(req, res, next) {
-//   res.send('respond with a resource get');
-// });
+app.get('/git', function(req, res, next) {
+  processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+  });
+});
 
 
 
