@@ -2,10 +2,13 @@ var util = require('util');
 var prefix = '';
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '123456',
-	database : 'chat'
+	// host     : '120.78.198.169',
+	// user     : 'chat',
+
+    host     : 'localhost',
+    user     : 'root',
+    password : '123456',
+    database : 'chat'
 });
 
 function where_fun(where){
@@ -73,6 +76,9 @@ var db = {
         // whre is arr; {id:1},{username:admin};
         var _WHERE = where_fun(where);
         var sql = "SELECT * FROM " + prefix+table + ' ' + _WHERE + ' order by ' + order;
+        console.log('sqlall=', sql)
+        SELECT * FROM sw_user WH order by id asc
+
         connection.query(sql,function (err, result) {
             if(err){
                 callback(err.message)
@@ -84,7 +90,8 @@ var db = {
     add (table , params , callback){
         // {username:'guojikai',age:'55',sex:'1'}
         res = params_fun(params);
-        var sql = "INSERT INTO "+ prefix + table + '('+res.fields+') VALUES('+res.values+')';
+        var sql = "INSERT INTO "+ prefix + table + ' ('+res.fields+') VALUES ('+res.values+')';
+        console.log('sql=', sql)
         connection.query(sql,function (err, result) {
             if(err){
                 callback(err.message)
