@@ -77,7 +77,7 @@ var db = {
         var _WHERE = where_fun(where);
         var sql = "SELECT * FROM " + prefix+table + ' ' + _WHERE + ' order by ' + order;
         console.log('sqlall=', sql)
-        SELECT * FROM sw_user WH order by id asc
+        // SELECT * FROM sw_user WH order by id asc
 
         connection.query(sql,function (err, result) {
             if(err){
