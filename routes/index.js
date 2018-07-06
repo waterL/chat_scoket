@@ -1,4 +1,4 @@
-var express = require('express');
+   var express = require('express');
 var router = express.Router();
 var base = require('../database')
 var processa = require('child_process');
@@ -75,52 +75,58 @@ router.get('/login', function(req, res, next) {
 //登录账号请求
 router.post('/ajaxName', function(req, res, next) {
 	var parm = req.body;
+	console.log('param',param)
+	base.add("user", {
+		name: parm.name
+	}, rss => {
+		console.log('ajaxNamerss',rss)
+	});
 	// console.log('ajaxNameparm', parm)
-	if (parm.type == 1) {
-		base.find("user", {
-			name: parm.name
-		}, rs => {
+	// if (parm.type == 1) {
+	// 	base.find("user", {
+	// 		name: parm.name
+	// 	}, rs => {
 
-			if (rs.length == 0) {
-				base.add("user", {
-					name: parm.name
-				}, rss => {
-					// console.log('ajaxNamerss',rss)
-					res.json({
-						ret: 1,
-						id: rss.insertId
-					})
-				});
-			} else {
-				res.json({
-					ret: 1,
-					id: rs[0].id
-				})
-			}
-		});
-	} else if (parm.type == 2) {
-		base.find("sw_user", {
-			name: parm.name
-		}, rs => {
-			// console.log('ajaxNamers2',rs)
-			if (rs.length == 0) {
-				base.add("sw_user", {
-					name: parm.name
-				}, rss => {
-					// console.log('ajaxNamerss2',rss)
-					res.json({
-						ret: 1,
-						id: rss.insertId
-					})
-				});
-			} else {
-				res.json({
-					ret: 1,
-					id: rs[0].id
-				})
-			}
-		});
-	}
+	// 		if (rs.length == 0) {
+	// 			base.add("user", {
+	// 				name: parm.name
+	// 			}, rss => {
+	// 				// console.log('ajaxNamerss',rss)
+	// 				res.json({
+	// 					ret: 1,
+	// 					id: rss.insertId
+	// 				})
+	// 			});
+	// 		} else {
+	// 			res.json({
+	// 				ret: 1,
+	// 				id: rs[0].id
+	// 			})
+	// 		}
+	// 	});
+	// } else if (parm.type == 2) {
+	// 	base.find("sw_user", {
+	// 		name: parm.name
+	// 	}, rs => {
+	// 		// console.log('ajaxNamers2',rs)
+	// 		if (rs.length == 0) {
+	// 			base.add("sw_user", {
+	// 				name: parm.name
+	// 			}, rss => {
+	// 				// console.log('ajaxNamerss2',rss)
+	// 				res.json({
+	// 					ret: 1,
+	// 					id: rss.insertId
+	// 				})
+	// 			});
+	// 		} else {
+	// 			res.json({
+	// 				ret: 1,
+	// 				id: rs[0].id
+	// 			})
+	// 		}
+	// 	});
+	// }
 });
 
 module.exports = router;
