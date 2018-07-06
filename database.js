@@ -8,9 +8,8 @@ var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     // password : '123456',
-    password : '9cbda687def9186b8336ce21335190b9',
+    password : '123456',
     database : 'chat',
-    useConnectionPooling: true
 });
 
 function where_fun(where){
