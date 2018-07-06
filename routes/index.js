@@ -80,6 +80,9 @@ router.post('/ajaxName', function(req, res, next) {
 		name: parm.name
 	}, rss => {
 		console.log('ajaxNamerss',rss)
+		res.json({
+			ret: 1
+		})
 	});
 	// console.log('ajaxNameparm', parm)
 	// if (parm.type == 1) {
