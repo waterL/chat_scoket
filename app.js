@@ -14,12 +14,6 @@ var app = express();
 var base = require('./database')
 var processa = require('child_process');
 
-
-
-
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -33,14 +27,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/git', function(req, res, next) {
-  console.log('git',req.body)
-  processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
-    console.log(stderr,'sh',stdout)
-    res.json(stdout)
-    if (error !== null) {
-      console.log('exec error: ' + error); 
-    }
-  });
+  console.log('git')
+  // processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
+  //   console.log(stderr,'sh',stdout)
+  //   res.json(stdout)
+  //   if (error !== null) {
+  //     console.log('exec error: ' + error); 
+  //   }
+  // });
 });
 app.use('/', routes);
 app.use('/cont', cont);
