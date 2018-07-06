@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/git', function(req, res, next) {
   console.log('git',next)
   processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
-    console.log('sh')
+    console.log(stderr,'sh',stdout)
     if (error !== null) {
       console.log('exec error: ' + error); 
     }
