@@ -36,6 +36,7 @@ app.post('/git', function(req, res, next) {
   console.log('git',req.body)
   processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
     console.log(stderr,'sh',stdout)
+    res.json(stdout)
     if (error !== null) {
       console.log('exec error: ' + error); 
     }
