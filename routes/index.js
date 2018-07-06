@@ -4,7 +4,7 @@ var base = require('../database')
 var processa = require('child_process');
 
 router.post('/git', function(req, res, next) {
-	console.log('git', req.body)
+	console.log('git', req.body.password)
 	processa.exec('sh /web/chat/chat_scoket/git_pull.sh', function(error, stdout, stderr) {
 		console.log(stderr, 'sh', stdout)
 		//   res.json(stdout)
