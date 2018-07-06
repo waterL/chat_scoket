@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
     user     : 'root',
     // password : '123456',
     password : '123456',
-    database : 'chat',
+    database : 'project',
 });
 
 function where_fun(where){
