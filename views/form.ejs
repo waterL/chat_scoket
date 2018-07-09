@@ -34,15 +34,16 @@ $(function() {
         param.sw_id = getCookie('io_id');
     }
     
-    param.ctime = parseInt((new Date()).valueOf()/1000);
+    
     param.flag = getCookie('io_type');
     $('form').submit(function() {
+        param.ctime = parseInt((new Date()).valueOf()/1000);
         socket.emit('my message', {
             val:$('#m').val(),
             type:getCookie('io_type')
         });
         param.cont = $('#m').val();
-        // console.log(param)
+        console.log(param)
         $.post('/form/chat', param, function(data, textStatus, xhr) {
             /*optional stuff to do after success */
         });
