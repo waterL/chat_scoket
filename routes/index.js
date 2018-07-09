@@ -74,25 +74,25 @@ router.get('/login', function(req, res, next) {
 });
 //登录账号请求
 router.post('/ajaxName', function(req, res, next) {
-	var parm = req.body;
+	var param = req.body;
 	console.log('param',param)
 	base.add("user", {
-		name: parm.name
+		name: param.name
 	}, rss => {
 		console.log('ajaxNamerss',rss)
 		res.json({
 			ret: 1
 		})
 	});
-	// console.log('ajaxNameparm', parm)
-	// if (parm.type == 1) {
+	// console.log('ajaxNameparam', param)
+	// if (param.type == 1) {
 	// 	base.find("user", {
-	// 		name: parm.name
+	// 		name: param.name
 	// 	}, rs => {
 
 	// 		if (rs.length == 0) {
 	// 			base.add("user", {
-	// 				name: parm.name
+	// 				name: param.name
 	// 			}, rss => {
 	// 				// console.log('ajaxNamerss',rss)
 	// 				res.json({
@@ -107,14 +107,14 @@ router.post('/ajaxName', function(req, res, next) {
 	// 			})
 	// 		}
 	// 	});
-	// } else if (parm.type == 2) {
+	// } else if (param.type == 2) {
 	// 	base.find("sw_user", {
-	// 		name: parm.name
+	// 		name: param.name
 	// 	}, rs => {
 	// 		// console.log('ajaxNamers2',rs)
 	// 		if (rs.length == 0) {
 	// 			base.add("sw_user", {
-	// 				name: parm.name
+	// 				name: param.name
 	// 			}, rss => {
 	// 				// console.log('ajaxNamerss2',rss)
 	// 				res.json({

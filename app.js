@@ -26,16 +26,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/git', function(req, res, next) {
-  console.log('git')
-  processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
-    console.log(stderr,'sh',stdout)
-  //   res.json(stdout)
-  //   if (error !== null) {
-  //     console.log('exec error: ' + error); 
-  //   }
-  });
-});
+// app.get('/git', function(req, res, next) {
+//   console.log('git')
+//   processa.exec('sh /web/chat/chat_scoket/git_pull.sh',function (error, stdout, stderr) {
+//     console.log(stderr,'sh',stdout)
+//   //   res.json(stdout)
+//   //   if (error !== null) {
+//   //     console.log('exec error: ' + error); 
+//   //   }
+//   });
+// });
 
 app.use('/', routes);
 app.use('/cont', cont);
