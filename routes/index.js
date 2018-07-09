@@ -48,6 +48,8 @@ router.get('/form', function(req, res, next) {
 //聊天请求
 router.post('/form/chat', function(req, res, next) {
 	console.log('DateNode',parseInt((new Date()).valueOf()/1000))
+	var param = req.body;
+	param.ctime = parseInt((new Date()).valueOf()/1000);
 	base.add('chat_list', req.body, rs => {
 		console.log(rs)
 		res.json(rs)

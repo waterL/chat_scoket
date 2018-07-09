@@ -37,7 +37,6 @@ $(function() {
     
     param.flag = getCookie('io_type');
     $('form').submit(function() {
-        param.ctime = parseInt((new Date()).valueOf()/1000);
         socket.emit('my message', {
             val:$('#m').val(),
             type:getCookie('io_type')
