@@ -76,60 +76,61 @@ router.get('/login', function(req, res, next) {
 router.post('/ajaxName', function(req, res, next) {
 	var param = req.body;
 	console.log('param',param)
-	base.add("user", {
-		name: param.name
-	}, rss => {
-		console.log('ajaxNamerss',rss)
-		res.json({
-			ret: 1
-		})
-	});
-	// console.log('ajaxNameparam', param)
-	// if (param.type == 1) {
-	// 	base.find("user", {
-	// 		name: param.name
-	// 	}, rs => {
+	// base.add("user", {
+	// 	name: param.name
+	// }, rss => {
+	// 	console.log('ajaxNamerss',rss)
+	// 	res.json({
+	// 		ret: 1,
+	// 		id: rss.insertId
+	// 	})
+	// });
+	console.log('ajaxNameparam', param)
+	if (param.type == 1) {
+		base.find("user", {
+			name: param.name
+		}, rs => {
 
-	// 		if (rs.length == 0) {
-	// 			base.add("user", {
-	// 				name: param.name
-	// 			}, rss => {
-	// 				// console.log('ajaxNamerss',rss)
-	// 				res.json({
-	// 					ret: 1,
-	// 					id: rss.insertId
-	// 				})
-	// 			});
-	// 		} else {
-	// 			res.json({
-	// 				ret: 1,
-	// 				id: rs[0].id
-	// 			})
-	// 		}
-	// 	});
-	// } else if (param.type == 2) {
-	// 	base.find("sw_user", {
-	// 		name: param.name
-	// 	}, rs => {
-	// 		// console.log('ajaxNamers2',rs)
-	// 		if (rs.length == 0) {
-	// 			base.add("sw_user", {
-	// 				name: param.name
-	// 			}, rss => {
-	// 				// console.log('ajaxNamerss2',rss)
-	// 				res.json({
-	// 					ret: 1,
-	// 					id: rss.insertId
-	// 				})
-	// 			});
-	// 		} else {
-	// 			res.json({
-	// 				ret: 1,
-	// 				id: rs[0].id
-	// 			})
-	// 		}
-	// 	});
-	// }
+			if (rs.length == 0) {
+				base.add("user", {
+					name: param.name
+				}, rss => {
+					// console.log('ajaxNamerss',rss)
+					res.json({
+						ret: 1,
+						id: rss.insertId
+					})
+				});
+			} else {
+				res.json({
+					ret: 1,
+					id: rs[0].id
+				})
+			}
+		});
+	} else if (param.type == 2) {
+		base.find("sw_user", {
+			name: param.name
+		}, rs => {
+			// console.log('ajaxNamers2',rs)
+			if (rs.length == 0) {
+				base.add("sw_user", {
+					name: param.name
+				}, rss => {
+					// console.log('ajaxNamerss2',rss)
+					res.json({
+						ret: 1,
+						id: rss.insertId
+					})
+				});
+			} else {
+				res.json({
+					ret: 1,
+					id: rs[0].id
+				})
+			}
+		});
+	}
 });
 
 module.exports = router;
