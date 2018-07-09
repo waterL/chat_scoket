@@ -51,6 +51,9 @@ $(function() {
         $('#m').val('');
         return false;
     });
+    socket.on('reconnect_attempt', () => {
+        socket.io.opts.transports = ['polling', 'websocket'];
+    });
     socket.on('my message', function(msg) {
         console.log('my')
         if(msg.type == getCookie('io_type')) {
