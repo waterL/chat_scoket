@@ -21,7 +21,9 @@
 </html>
 <script>
 $(function() {
-    var socket = io();
+    var socket = io({
+        transports: ['websocket']
+    });
     var url_query = <%- JSON.stringify(query) %>;
     var aa = '<%= name%>';
     // console.log(aa,'url_query',url_query.id)
