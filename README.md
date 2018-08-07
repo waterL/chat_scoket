@@ -14,6 +14,6 @@ scoket.io/Node.js
 #### 使用说明
 
 1. npm i
-2. node bin/www
+2. node bin/www 
 
 
